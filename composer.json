@@ -1,8 +1,8 @@
 {
     "name": "event-band/pecl-amqp-transport",
-    "description": "Asynchronous event dispatching",
-    "keywords": ["event", "dispatcher", "queue", "async", "asynchronous", "message"],
-    "homepage": "http://github.com/chEbba/EventBand",
+    "description": "Pecl amqp extension transport for EventBand",
+    "keywords": ["event", "pecl", "amqp", "driver"],
+    "homepage": "http://github.com/chEbba/EventBandPeclAmqpTransport",
     "type": "library",
     "license": "MIT",
     "authors": [
