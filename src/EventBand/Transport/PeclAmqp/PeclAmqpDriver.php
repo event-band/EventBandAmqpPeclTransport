@@ -9,6 +9,8 @@
 
 namespace EventBand\Transport\PeclAmqp;
 
+use EventBand\Transport\Amqp\Definition\ExchangeDefinition;
+use EventBand\Transport\Amqp\Definition\QueueDefinition;
 use EventBand\Transport\Amqp\Driver\AmqpDriver;
 use EventBand\Transport\Amqp\Driver\DriverException;
 use EventBand\Transport\Amqp\Driver\MessageDelivery;
@@ -149,5 +151,58 @@ class PeclAmqpDriver implements AmqpDriver
     public function reject(MessageDelivery $delivery)
     {
         $this->getQueue($delivery->getQueue())->nack($delivery->getTag(), AMQP_REQUEUE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function declareExchange(ExchangeDefinition $exchange)
+    {
+        static $typeMap = [
+            ExchangeDefinition::TYPE_DIRECT => AMQP_EX_TYPE_DIRECT,
+            ExchangeDefinition::TYPE_TOPIC => AMQP_EX_TYPE_TOPIC,
+            ExchangeDefinition::TYPE_FANOUT => AMQP_EX_TYPE_FANOUT,
+            ExchangeDefinition::TYPE_HEADER => AMQP_EX_TYPE_HEADERS
+        ];
+
+        $exchangeObject = $this->getExchange($exchange->getName());
+        $exchangeObject->setType($typeMap[$exchange->getType()]);
+
+        $flags = (AMQP_DURABLE * $exchange->isDurable())
+                |(AMQP_AUTODELETE * $exchange->isAutoDeleted())
+                |(AMQP_INTERNAL * $exchange->isInternal());
+        $exchangeObject->setFlags($flags);
+
+        $exchangeObject->declareExchange();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function bindExchange($target, $source, $routingKey = '')
+    {
+        $this->getExchange($target)->bind($source, $routingKey);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function declareQueue(QueueDefinition $queue)
+    {
+        $queueObject = $this->getQueue($queue->getName());
+        $flags = (AMQP_DURABLE * $queue->isDurable())
+            |(AMQP_AUTODELETE * $queue->isAutoDeleted())
+            |(AMQP_EXCLUSIVE * $queue->isExclusive());
+        $queueObject->setFlags($flags);
+
+        $queueObject->declareQueue();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function bindQueue($queue, $exchange, $routingKey = '')
+    {
+        $this->getQueue($queue)->bind($exchange, $routingKey);
     }
 }
