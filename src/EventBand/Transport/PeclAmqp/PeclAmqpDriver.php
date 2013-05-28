@@ -10,6 +10,7 @@
 namespace EventBand\Transport\PeclAmqp;
 
 use EventBand\Transport\Amqp\Definition\ExchangeDefinition;
+use EventBand\Transport\Amqp\Definition\ExchangeType;
 use EventBand\Transport\Amqp\Definition\QueueDefinition;
 use EventBand\Transport\Amqp\Driver\AmqpDriver;
 use EventBand\Transport\Amqp\Driver\DriverException;
@@ -159,10 +160,10 @@ class PeclAmqpDriver implements AmqpDriver
     public function declareExchange(ExchangeDefinition $exchange)
     {
         static $typeMap = [
-            ExchangeDefinition::TYPE_DIRECT => AMQP_EX_TYPE_DIRECT,
-            ExchangeDefinition::TYPE_TOPIC => AMQP_EX_TYPE_TOPIC,
-            ExchangeDefinition::TYPE_FANOUT => AMQP_EX_TYPE_FANOUT,
-            ExchangeDefinition::TYPE_HEADER => AMQP_EX_TYPE_HEADERS
+            ExchangeType::DIRECT => AMQP_EX_TYPE_DIRECT,
+            ExchangeType::TOPIC => AMQP_EX_TYPE_TOPIC,
+            ExchangeType::FANOUT => AMQP_EX_TYPE_FANOUT,
+            ExchangeType::HEADERS => AMQP_EX_TYPE_HEADERS
         ];
 
         $exchangeObject = $this->getExchange($exchange->getName());

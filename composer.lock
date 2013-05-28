@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/chEbba/EventBand.git",
-                "reference": "eb0f704365742028626edea44455fcc79cbdfc95"
+                "reference": "fceb10989d68e48336499e9f0c45a53cbad61f7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chEbba/EventBand/zipball/eb0f704365742028626edea44455fcc79cbdfc95",
-                "reference": "eb0f704365742028626edea44455fcc79cbdfc95",
+                "url": "https://api.github.com/repos/chEbba/EventBand/zipball/fceb10989d68e48336499e9f0c45a53cbad61f7d",
+                "reference": "fceb10989d68e48336499e9f0c45a53cbad61f7d",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "message",
                 "queue"
             ],
-            "time": "2013-05-27 15:26:34"
+            "time": "2013-05-28 12:21:55"
         },
         {
             "name": "symfony/property-access",
