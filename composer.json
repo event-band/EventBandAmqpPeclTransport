@@ -19,7 +19,7 @@
 
     "require": {
         "php": ">=5.4.1",
-        "ext-amqp": "*",
+        "ext-amqp": "~1.4.0",
 
         "event-band/band-framework" : "dev-master"
     },
