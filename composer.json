@@ -2,7 +2,7 @@
     "name": "event-band/pecl-amqp-transport",
     "description": "Pecl amqp extension transport for EventBand",
     "keywords": ["event", "pecl", "amqp", "driver"],
-    "homepage": "http://github.com/chEbba/EventBandPeclAmqpTransport",
+    "homepage": "https://github.com/event-band/band-transport-amqp-pecl",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -10,16 +10,21 @@
             "name": "Kirill chEbba Chebunin",
             "email": "iam@chebba.org",
             "homepage": "http://github.com/chEbba"
+        },
+        {
+            "name": "Vasil coylOne Kulakov",
+            "email": "kulakov@vasiliy.pro",
+            "homepage": "http://github.com/coyl"
         }
     ],
 
     "autoload": {
-        "psr-0": { "EventBand\\Transport\\PeclAmqp": "src/" }
+        "psr-4": { "EventBand\\Transport\\PeclAmqp\\": "src/" }
     },
 
     "require": {
         "php": ">=5.4.1",
-        "ext-amqp": "~1.4.0",
+        "ext-amqp": "~1.4",
 
         "event-band/band-framework" : "dev-master"
     },

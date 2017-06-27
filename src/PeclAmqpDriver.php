@@ -1,7 +1,8 @@
 <?php
-/*
- * Copyright (c)
- * Kirill chEbba Chebunin <iam@chebba.org>
+/**
+ * This file is a part of the Event-Band project
+ * @author Kirill chEbba Chebunin
+ * @author Vasil coylOne Kulakov <kulakov@vasiliy.pro>
  *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
@@ -120,7 +121,7 @@ class PeclAmqpDriver implements AmqpDriver
 
         try {
             $this->getQueue($queue)->consume(function (\AMQPEnvelope $envelope) use ($callback, $queue) {
-                return call_user_func($callback, PeclMessageUtils::createDelivery($envelope, $queue));
+                return (bool) call_user_func($callback, PeclMessageUtils::createDelivery($envelope, $queue));
             });
             $this->connection->setReadTimeout($oldTimeout);
             $this->closeChannel();
