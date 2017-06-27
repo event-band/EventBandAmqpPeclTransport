@@ -1,19 +1,18 @@
 <?php
 /**
- * @LICENSE_TEXT
+ * This file is a part of the Event-Band project
+ * @author Kirill chEbba Chebunin
+ * @author Vasil coylOne Kulakov <kulakov@vasiliy.pro>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this package in the file LICENSE.
  */
-
 namespace EventBand\Transport\PeclAmqp\Tests;
 
 use EventBand\Transport\Amqp\Driver\CustomAmqpMessage;
 use EventBand\Transport\PeclAmqp\PeclMessageUtils;
 use PHPUnit_Framework_TestCase as TestCase;
 
-/**
- * Class PeclMessageUtilsTest
- *
- * @author Kirill chEbba Chebunin <iam@chebba.org>
- */
 class PeclMessageUtilsTest extends TestCase
 {
     /**

@@ -7,7 +7,12 @@
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
+namespace EventBand\Transport\PeclAmqp;
 
-/** @var $loader \Composer\Autoload\ClassLoader */
-$loader = include __DIR__ . '/../vendor/autoload.php';
-$loader->add('EventBand\Transport\PeclAmqp\Tests', __DIR__, true);
+interface AmqpConnectionFactory
+{
+    /**
+     * @return \AMQPConnection
+     */
+    public function getConnection();
+}
