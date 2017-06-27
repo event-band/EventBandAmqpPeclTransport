@@ -207,4 +207,16 @@ class PeclAmqpDriver implements AmqpDriver
     {
         $this->getQueue($queue)->bind($exchange, $routingKey);
     }
+
+    public function deleteExchange(ExchangeDefinition $exchange, $ifUnused = false, $nowait = false)
+    {
+        $this->deleteExchange($exchange->getName(), $ifUnused, $nowait);
+    }
+
+    public function deleteQueue(QueueDefinition $queue, $ifUnused = false, $ifEmpty = false, $nowait = false)
+    {
+        $this->deleteQueue($queue->getName(), $ifUnused, $ifEmpty, $nowait);
+    }
+
+
 }
