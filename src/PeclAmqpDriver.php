@@ -114,10 +114,10 @@ class PeclAmqpDriver implements AmqpDriver
     /**
      * {@inheritDoc}
      */
-    public function consume($queue, callable $callback, $timeout)
+    public function consume($queue, callable $callback, $idleTimeout, $timeout = null)
     {
         $oldTimeout = $this->connection->getReadTimeout();
-        $this->connection->setReadTimeout($timeout);
+        $this->connection->setReadTimeout($timeout ? min($timeout, $idleTimeout) : $idleTimeout);
 
         try {
             $this->getQueue($queue)->consume(function (\AMQPEnvelope $envelope) use ($callback, $queue) {
